@@ -1,4 +1,7 @@
 /**
+ * CombinatoricGenerators.kt - generators for creating lists of all possible combinations/permutations
+ * as per Python's itertools.
+ *
  * Created by andrej on 2.8.2017.
  */
 
@@ -32,6 +35,16 @@ fun permutations(alphabet: String): ArrayList<String> {
 
     build("", alphabet)
     return words
+}
+
+
+fun combinations(alphabet: String): ArrayList<String> {
+    TODO("implement this")
+}
+
+
+fun combinationsWithReplacement(alphabet: String, n: Int): ArrayList<String> {
+    TODO("implement this")
 }
 
 
