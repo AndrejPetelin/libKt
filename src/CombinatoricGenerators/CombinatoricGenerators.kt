@@ -38,13 +38,36 @@ fun permutations(alphabet: String): ArrayList<String> {
 }
 
 
-fun combinations(alphabet: String): ArrayList<String> {
-    TODO("implement this")
+fun combinations(alphabet: String, n : Int = alphabet.length): ArrayList<String> {
+    val words = ArrayList<String>()
+    fun build(word: String, chars: String) {
+        if (word.length == n)  words.add(word)
+        else {
+            for (idx in chars.indices) {
+                build(word + chars[idx], chars.filterIndexed { i, _ -> i > idx })
+            }
+        }
+    }
+
+    build("", alphabet)
+    return words
 }
 
 
-fun combinationsWithReplacement(alphabet: String, n: Int): ArrayList<String> {
-    TODO("implement this")
+fun combinationsWithReplacement(alphabet: String, n: Int = alphabet.length): ArrayList<String> {
+    val words = ArrayList<String>()
+    fun build(word: String, chars: String) {
+        if (word.length == n)  words.add(word)
+        else {
+            for (idx in chars.indices) {
+                build(word + chars[idx], chars.filterIndexed { i, _ -> i >= idx})
+            }
+        }
+    }
+
+    build("", alphabet)
+    return words
+
 }
 
 
@@ -52,6 +75,18 @@ fun main(args: Array<String>) {
     val xs = permutationsWithReplacement("abc", 3)
     xs.map { println(it) }
 
+    println()
+
     val ys = permutations("abcd")
     ys.map { println(it) }
+
+    println()
+
+    val zs = combinations("abcd", 2)
+    zs.map { println(it) }
+
+    println()
+
+    val ws = combinationsWithReplacement("abcd", 2)
+    ws.map { println(it) }
 }
