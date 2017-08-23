@@ -8,6 +8,7 @@
 
 package CombinatoricGenerators
 
+
 fun permutationsWithReplacement(alphabet: String, length: Int): ArrayList<String> {
     val words = ArrayList<String>()
     fun build(word: String, n: Int) {
