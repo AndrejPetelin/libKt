@@ -8,9 +8,9 @@ package SumInList
 /**
  * is sum of two numbers from list equal to x?
  */
-fun isSumInList(x: Int, list: List<Int>): Boolean {
+fun <C: Collection<Int>> isSumInList(x: Int, coll: C): Boolean {
     // sort the list - O(n*log(n))
-    val xs = list.sorted()
+    val xs = coll.sorted()
     // pointers - left and right are indices of the number we're looking at on the left and the right side of the list
     var left = 0
     var right = xs.size - 1
@@ -59,8 +59,7 @@ fun <C: Collection<Int>> whichSumInList(x: Int, coll: C): Pair<Int, Int>? {
  */
 fun <C: Collection<Int>> whereSumInList(x: Int, coll: C) : Pair<Int, Int>? {
     val xs = coll.toTypedArray()
-    val p = whichSumInList(x, coll)
-    if (p == null) return null
+    val p = whichSumInList(x, coll) ?: return null
 
     val ret1 = coll.indexOf(p.first)
     val ret2 = coll.indexOf(p.second)
