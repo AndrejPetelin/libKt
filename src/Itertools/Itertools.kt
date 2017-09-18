@@ -28,3 +28,5 @@ class CombIter<T>(val alphabet: List<T>, val length: Int) : Iterator<List<T>> {
 
 
 fun <T> combinationsWithReplacement(alphabet: List<T>, length: Int) = CombIter<T>(alphabet, length)
+fun combinationsWithReplacement(alphabet: String, length: Int) = combinationsWithReplacement(alphabet.map { it }, length)
+
