@@ -5,6 +5,7 @@ package Tests
  */
 
 import Itertools.combinationsWithReplacement
+import Itertools.combinations
 
 fun main(args: Array<String>) {
     val xs = combinationsWithReplacement(listOf(1,2,3,4), 4)
@@ -14,4 +15,11 @@ fun main(args: Array<String>) {
     val ys = combinationsWithReplacement("abcd", 4)
 
     for (y in ys) println(y)
+
+
+    val zs = combinations(listOf(1,2,3,4,5,6), 3)
+
+    for (z in zs) println(z)
+
+
 }
