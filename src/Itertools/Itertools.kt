@@ -12,7 +12,7 @@ package Itertools
 /**
  * object that generates (in List<T>) combinations with repeats on the fly.
  */
-class CombIterRepeat<T>(val alphabet: List<T>, val length: Int) : Iterator<List<T>> {
+class ProdIter<T>(val alphabet: List<T>, val length: Int) : Iterator<List<T>> {
     private val maxVal = alphabet.size - 1
 
     /**
@@ -86,10 +86,10 @@ class CombIter<T>(val alphabet: List<T>, val length: Int): Iterator<List<T>> {
  * combinationsWithReplacement generates a list of all elements with replacements, so for alphabet of "abc" and length
  * of 3 you get ['a', 'a', 'a'], ['a', 'a', 'b'] ... ['b', 'c', 'c'], ['c', 'c', 'c']
  */
-fun <T> combinationsWithReplacement(alphabet: List<T>, length: Int) = CombIterRepeat<T>(alphabet, length)
+fun <T> product(alphabet: List<T>, length: Int) = ProdIter<T>(alphabet, length)
 
 // overloaded for alphabet as String
-fun combinationsWithReplacement(alphabet: String, length: Int) = combinationsWithReplacement(alphabet.map { it }, length)
+fun product(alphabet: String, length: Int) = combinationsWithReplacement(alphabet.map { it }, length)
 
 
 /**
