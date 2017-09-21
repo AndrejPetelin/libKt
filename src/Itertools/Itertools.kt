@@ -89,7 +89,7 @@ class CombIter<T>(val alphabet: List<T>, val length: Int): Iterator<List<T>> {
 fun <T> product(alphabet: List<T>, length: Int) = ProdIter<T>(alphabet, length)
 
 // overloaded for alphabet as String
-fun product(alphabet: String, length: Int) = combinationsWithReplacement(alphabet.map { it }, length)
+fun product(alphabet: String, length: Int) = product(alphabet.map { it }, length)
 
 
 /**
