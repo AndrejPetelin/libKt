@@ -3,7 +3,7 @@
  */
 
 
-
+/*
 import CombinatoricGenerators.combinations
 import CombinatoricGenerators.combinationsWithReplacement
 import CombinatoricGenerators.permutations
@@ -28,3 +28,4 @@ fun main(args: Array<String>) {
     val ws = combinationsWithReplacement("abcd", 2)
     ws.map { println(it) }
 }
+*/

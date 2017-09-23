@@ -1,7 +1,7 @@
 /**
  * Created by andrej on 23.8.2017
  */
-
+/*
 import SumInList.*
 
 fun main(args: Array<String>) {
@@ -16,3 +16,4 @@ fun main(args: Array<String>) {
     println("5 = ${whichSumInList(5, xs)?.first} + ${whichSumInList(5, xs)!!.second}")
 
 }
+*/
