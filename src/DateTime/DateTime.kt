@@ -98,7 +98,7 @@ class DateTime(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0)
     fun toSecsSinceEpoch(): Long {
         val y = (year - 1900).toLong()
         val d = yday().toLong() - 1
-        return second + minute * 60 + hour.toLong() * 3600 + d * 86400 +
+        return second + minute * 60 + hour * 3600 + d * 86400 +
                 (y - 70) * 31536000 + ((y - 69) / 4) * 86400 -
                 ((y - 1) / 100) * 86400 + ((y + 299) / 400) * 86400
     }
