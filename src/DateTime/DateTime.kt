@@ -4,7 +4,7 @@
  * Created by andrej on 30.9.2017
  *
  * Date.isLeapYear() is modeled from https://www.mathsisfun.com/leap-years.html
- * DateTime.toMilliseconds() is modeled from
+ * DateTime.toMilliseconds() is modeled from http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15
  */
 
 package DateTime
