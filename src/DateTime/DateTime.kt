@@ -59,5 +59,9 @@ class DateTime(day: Int, month: Int, year: Int, h: Int, m: Int, s: Int = 0) {
     val hour = time.h
     val minute = time.m
     val second = time.s
+
+    override fun toString(): String {
+        return "$day.$month.$year, $hour:$minute:$second"
+    }
 }
 
