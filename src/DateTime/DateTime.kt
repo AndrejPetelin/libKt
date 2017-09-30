@@ -2,6 +2,9 @@
  * DateTime.kt - simple tools for dealing with and calculating time and date
  *
  * Created by andrej on 30.9.2017
+ *
+ * Date.isLeapYear() is modeled from https://www.mathsisfun.com/leap-years.html
+ * DateTime.toMilliseconds() is modeled from
  */
 
 package DateTime
@@ -9,11 +12,13 @@ package DateTime
 
 class Time(val h: Int, val m: Int, val s: Int) {
     init {
-        if (h < 0 || h > 24) throw Exception("DateTime - hour out of range")
-        if (m < 0 || m > 60) throw Exception("DateTime - minute out of range")
-        if (s < 0 || s > 60) throw Exception("DateTime - second out of range")
+        if (h < 0 || h >= 24) throw Exception("DateTime - hour out of range")
+        if (m < 0 || m >= 60) throw Exception("DateTime - minute out of range")
+        if (s < 0 || s >= 60) throw Exception("DateTime - second out of range")
     }
 }
+
+internal val daysInMonth = intArrayOf(31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31)
 
 class Date(val day: Int, val month: Int, val year: Int) {
     init {
@@ -51,9 +56,9 @@ class Date(val day: Int, val month: Int, val year: Int) {
 }
 
 
-class DateTime(day: Int, month: Int, year: Int, h: Int, m: Int, s: Int = 0): Comparable<DateTime> {
+class DateTime(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0): Comparable<DateTime> {
     private val date = Date(day, month, year)
-    private val time = Time(h, m, s)
+    private val time = Time(hr, min, sec)
 
     val day = date.day
     val month = date.month
@@ -61,7 +66,7 @@ class DateTime(day: Int, month: Int, year: Int, h: Int, m: Int, s: Int = 0): Com
     val hour = time.h
     val minute = time.m
     val second = time.s
-    fun isLeapYear() = date.isLeapYear()
+
 
     override fun toString() =
         "${String.format("%02d",day)}.${String.format("%02d", month)}.$year, $hour:${String.format("%02d", minute)}:${String.format("%02d",second)}"
@@ -76,5 +81,30 @@ class DateTime(day: Int, month: Int, year: Int, h: Int, m: Int, s: Int = 0): Com
             else -> second - other.second
         }
     }
+
+    fun isLeapYear() = date.isLeapYear()
+
+    private fun yday(): Int {
+        var days = day
+        for (m in 1 until month) days += daysInMonth[m - 1]
+        if (isLeapYear()) ++days
+        return days
+    }
+
+    /**
+     * time since Epoch (01.01.1970 0:00:00) in seconds
+     */
+    fun toSecsSinceEpoch(): Long {
+        val y = (year - 1900).toLong()
+        val d = yday().toLong() - 1
+        return second + minute * 60 + hour.toLong() * 3600 + d * 86400 +
+                (y - 70) * 31536000 + ((y - 69L) / 4) * 86400 -
+                ((y - 1) / 100) * 86400 + ((y + 299) / 400) * 86400
+    }
+
+    /**
+     * time since Epoch in milliseconds
+     */
+    fun toMilliSinceEpoch() = toSecsSinceEpoch() * 1000
 }
 
