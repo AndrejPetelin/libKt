@@ -17,4 +17,8 @@ fun main(args: Array<String>) {
     } catch (e: Exception) {
         println("this doesn't go! " + e.message)
     }
+
+    (1800..2017).map {
+        if (Date(1, 1, it).isLeapYear()) println(it)
+    }
 }

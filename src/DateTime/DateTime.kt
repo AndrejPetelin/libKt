@@ -20,7 +20,7 @@ class Date(val day: Int, val month: Int, val year: Int) {
 
 fun Date.isLeapYear(): Boolean {
     if (year % 4 != 0) return false
-    if (year % 100 != 0) return false
+    if (year % 100 != 0) return true
     if (year % 400 != 0) return false
     return true
 }
