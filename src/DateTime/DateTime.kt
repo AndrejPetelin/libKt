@@ -27,7 +27,7 @@ class Date(val day: Int, val month: Int, val year: Int) {
         return true
     }
 
-    fun isValid(): Boolean {
+    private fun isValid(): Boolean {
         if (day <= 0 || month <= 0) return false
 
         if (isLeapYear() && month == 2 && day <= 29) return true
@@ -61,6 +61,7 @@ class DateTime(day: Int, month: Int, year: Int, h: Int, m: Int, s: Int = 0): Com
     val hour = time.h
     val minute = time.m
     val second = time.s
+    fun isLeapYear() = date.isLeapYear()
 
     override fun toString() =
         "${String.format("%02d",day)}.${String.format("%02d", month)}.$year, $hour:${String.format("%02d", minute)}:${String.format("%02d",second)}"

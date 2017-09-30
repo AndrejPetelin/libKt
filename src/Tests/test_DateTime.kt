@@ -9,7 +9,7 @@ import DateTime.*
 fun main(args: Array<String>) {
     val valid = DateTime(3, 5, 2017, 22, 30)
 
-    println(valid.date.isLeapYear())
+    println(valid.isLeapYear())
     println("${valid.day}, ${valid.month}, ${valid.year} - ${valid.hour}:${valid.minute}:${valid.second}")
 
     try {
