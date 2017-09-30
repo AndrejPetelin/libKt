@@ -6,12 +6,17 @@ package DateTime
 
 class Time(val h: Int, val m: Int, val s: Int) {
     init {
-        if (h < 0 || h > 24) throw Exception("Time - hour out of range")
-        if (m < 0 || m > 60) throw Exception("Time - minute out of range")
-        if (s < 0 || s > 60) throw Exception("Time - second out of range")
+        if (h < 0 || h > 24) throw Exception("DateTime - hour out of range")
+        if (m < 0 || m > 60) throw Exception("DateTime - minute out of range")
+        if (s < 0 || s > 60) throw Exception("DateTime - second out of range")
     }
 }
 
+class Date(val day: Int, val month: Int, val year: Int) {
+    init {
+        if (!isValid()) throw Exception("DateTime - invalid date")
+    }
+}
 
 fun Date.isLeapYear(): Boolean {
     if (year % 4 != 0) return false
@@ -42,11 +47,7 @@ fun Date.isValid(): Boolean {
     return false
 }
 
-class Date(val day: Int, val month: Int, val year: Int) {
-    init {
-        if (!isValid()) throw Exception("Date - invalid date")
-    }
-}
+
 
 class DateTime(day: Int, month: Int, year: Int, h: Int, m: Int, s: Int = 0) {
     val date = Date(day, month, year)
