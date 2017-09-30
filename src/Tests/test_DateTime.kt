@@ -21,4 +21,11 @@ fun main(args: Array<String>) {
     (1800..2017).map {
         if (Date(1, 1, it).isLeapYear()) println(it)
     }
+
+
+    val t1 = DateTime(29, 4, 2017, 12, 12, 12)
+
+    val t2 = DateTime(29, 3, 2017, 13, 12, 11)
+
+    println(t1 < t2)
 }
