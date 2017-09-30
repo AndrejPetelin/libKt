@@ -93,6 +93,7 @@ class DateTime(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0)
 
     /**
      * time since Epoch (01.01.1970 0:00:00) in seconds
+     * note that the function does not take timezones into account
      */
     fun toSecsSinceEpoch(): Long {
         val y = (year - 1900).toLong()
@@ -104,6 +105,7 @@ class DateTime(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0)
 
     /**
      * time since Epoch in milliseconds
+     * note that the function does not take timezones into account
      */
     fun toMilliSinceEpoch() = toSecsSinceEpoch() * 1000
 }
