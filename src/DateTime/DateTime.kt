@@ -60,8 +60,8 @@ class DateTime(day: Int, month: Int, year: Int, h: Int, m: Int, s: Int = 0) {
     val minute = time.m
     val second = time.s
 
-    override fun toString(): String {
-        return "$day.$month.$year, $hour:$minute:$second"
-    }
+    override fun toString() =
+        "${String.format("%02d",day)}.${String.format("%02d", month)}.$year, $hour:${String.format("%02d", minute)}:${String.format("%02d",second)}"
+
 }
 
