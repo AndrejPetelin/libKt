@@ -40,4 +40,7 @@ fun main(args: Array<String>) {
     println(date.toGMTString())
     println("system: ${date.time}, DateTime: ${midnight.toMilliSinceEpoch()}")
     println("difference: ${date.time - midnight.toMilliSinceEpoch()}")
+
+    println(DateTime(toDate("02.10.2017"), toTime("14:05")).toString())
+    println(DateTime(toDate("02.10.2017"), toTime("14:05:12")))
 }

@@ -10,7 +10,7 @@
 package DateTime
 
 
-class Time(val h: Int, val m: Int, val s: Int) {
+class Time(val h: Int, val m: Int, val s: Int = 0) {
     init {
         if (h < 0 || h >= 24) throw Exception("DateTime - hour out of range")
         if (m < 0 || m >= 60) throw Exception("DateTime - minute out of range")
@@ -56,9 +56,8 @@ class Date(val day: Int, val month: Int, val year: Int) {
 }
 
 
-class DateTime(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0): Comparable<DateTime> {
-    private val date = Date(day, month, year)
-    private val time = Time(hr, min, sec)
+class DateTime(private val date: Date, private val time: Time): Comparable<DateTime> {
+    constructor(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0): this(Date(day, month, year), Time(hr, min, sec))
 
     val day = date.day
     val month = date.month
@@ -108,5 +107,32 @@ class DateTime(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0)
      * note that the function does not take timezones into account
      */
     fun toMilliSinceEpoch() = toSecsSinceEpoch() * 1000
+}
+
+
+val dateRegex = Regex.fromLiteral("""(?<day>\d{1,2})\.(?<month>\d{1,2})\.(?<year>\d{4})""")
+
+
+/**
+ * converts string str to Date. String needs to be formatted as "dd.mm.yyyy". If any of values are out of range Date
+ * will throw an Exception
+ */
+fun toDate(str: String): Date {
+    val raw = str.split(".")
+    return Date(raw[0].toInt(), raw[1].toInt(), raw[2].toInt())
+}
+
+/**
+ * converts string str to Time. String needs to be formatted as "hh:mm:ss", where seconds are optional
+ * TODO: what about milliseconds?
+ */
+fun toTime(str: String): Time {
+    val raw = str.split(":")
+    if (raw.size < 3) {
+        return Time(raw[0].toInt(), raw[1].toInt(), 0)
+    }
+    else {
+        return Time(raw[0].toInt(), raw[1].toInt(), raw[2].toInt())
+    }
 }
 
