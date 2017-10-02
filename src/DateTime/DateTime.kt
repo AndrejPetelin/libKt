@@ -10,11 +10,11 @@
 package DateTime
 
 
-class Time(val h: Int, val m: Int, val s: Int = 0) {
+class Time(val hour: Int, val minute: Int, val second: Int = 0) {
     init {
-        if (h < 0 || h >= 24) throw Exception("DateTime - hour out of range")
-        if (m < 0 || m >= 60) throw Exception("DateTime - minute out of range")
-        if (s < 0 || s >= 60) throw Exception("DateTime - second out of range")
+        if (hour < 0 || hour >= 24) throw Exception("DateTime - hour out of range")
+        if (minute < 0 || minute >= 60) throw Exception("DateTime - minute out of range")
+        if (second < 0 || second >= 60) throw Exception("DateTime - second out of range")
     }
 }
 
@@ -59,16 +59,17 @@ class Date(val day: Int, val month: Int, val year: Int) {
 class DateTime(private val date: Date, private val time: Time): Comparable<DateTime> {
     constructor(day: Int, month: Int, year: Int, hr: Int, min: Int, sec: Int = 0): this(Date(day, month, year), Time(hr, min, sec))
 
-    val day = date.day
-    val month = date.month
-    val year = date.year
-    val hour = time.h
-    val minute = time.m
-    val second = time.s
+    val day get() = date.day
+    val month get() = date.month
+    val year get() = date.year
+    val hour get() = time.hour
+    val minute get() = time.minute
+    val second get() = time.second
 
 
     override fun toString() =
-        "${String.format("%02d",day)}.${String.format("%02d", month)}.$year, $hour:${String.format("%02d", minute)}:${String.format("%02d",second)}"
+        "${String.format("%02d",day)}.${String.format("%02d", month)}.$year," +
+                " $hour:${String.format("%02d", minute)}:${String.format("%02d", second)}"
 
     override fun compareTo(other: DateTime): Int {
         return when {
