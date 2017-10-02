@@ -109,10 +109,6 @@ class DateTime(private val date: Date, private val time: Time): Comparable<DateT
     fun toMilliSinceEpoch() = toSecsSinceEpoch() * 1000
 }
 
-
-val dateRegex = Regex.fromLiteral("""(?<day>\d{1,2})\.(?<month>\d{1,2})\.(?<year>\d{4})""")
-
-
 /**
  * converts string str to Date. String needs to be formatted as "dd.mm.yyyy". If any of values are out of range Date
  * will throw an Exception
@@ -123,7 +119,8 @@ fun toDate(str: String): Date {
 }
 
 /**
- * converts string str to Time. String needs to be formatted as "hh:mm:ss", where seconds are optional
+ * converts string str to Time. String needs to be formatted as "hh:mm:ss", where seconds are optional. If any values
+ * are out of range Time will throw an Exception
  * TODO: what about milliseconds?
  */
 fun toTime(str: String): Time {
